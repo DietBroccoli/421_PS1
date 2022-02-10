@@ -1,0 +1,51 @@
+/*body {*/
+/*    background-color: #131516;*/
+/*}*/
+
+
+/*html {*/
+/*    border-color: #5c564b;*/
+/*    color: #bab8b6;*/
+/*}*/
+h2 {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    white-space: pre;
+}
+
+img {
+    height: 200px;
+    width: auto;
+}
+
+div {
+    display:flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    margin: 10px;
+    min-height: 50%;
+    white-space: pre;
+
+}
+
+button {
+    width: 9%;
+    margin: 1px;
+}
+
+#guessed {
+    border-color: gray;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 20px;
+    line-height: 60%;
+    white-space: pre;
+}
+
+.missed {
+    color: red;
+    white-space: pre;
+}
