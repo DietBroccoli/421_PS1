@@ -1,0 +1,11 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+/421_PS1.iml
+/codeStyles/codeStyleConfig.xml
+/jsLibraryMappings.xml
+/modules.xml
+/inspectionProfiles/Project_Default.xml
+/vcs.xml

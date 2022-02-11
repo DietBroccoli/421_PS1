@@ -5,7 +5,7 @@ class Minesweeper {
     bombs = null;
     origin = null;
     gameOver = false;
-    nMines = 10;
+    nMines = 15;
     moves = 0;
 
     constructor(resourceFolder) {
@@ -43,26 +43,33 @@ class Minesweeper {
                     tile.className = 't' + tile.value;
                     this.moves++;
                     this.checkWin();
-
+                    if (tile.value === '0')
+                        this.executeAdjacent(
+                            tile,
+                            (zero) => {
+                                zero.click();
+                            },
+                            () => {
+                                return true;
+                            });
             }
         })
 
         this.field.addEventListener('contextmenu', (event) => {
-                event.preventDefault();
-                const tile = event.target;
-                if (tile.type !== 'image' || this.origin === null || this.gameOver) return;
+            event.preventDefault();
+            const tile = event.target;
+            if (tile.type !== 'image' || this.origin === null || this.gameOver) return;
 
-                console.log(tile.value);
-                switch (tile.className) {
-                    case 'tile':
-                        tile.className = 'flag';
-                        break;
-                    case 'flag':
-                        tile.className = 'tile';
-                        break;
-                }
+            console.log(tile.value);
+            switch (tile.className) {
+                case 'tile':
+                    tile.className = 'flag';
+                    break;
+                case 'flag':
+                    tile.className = 'tile';
+                    break;
             }
-        );
+        });
     }
 
     getRandTile() {
@@ -84,11 +91,10 @@ class Minesweeper {
                 bomb,
                 this.incrementValue,
                 (b) => {
-                    return b !== 'bomb';
+                    return b.value !== 'bomb';
                 });
         });
     }
-
 
     executeAdjacent(target, callback, filterCallback) {
         let [x, y] = target.id.split(',').map(z => parseInt(z));
@@ -96,7 +102,7 @@ class Minesweeper {
             for (let j = Math.max(y - 1, 0); j < Math.min(y + 2, Minesweeper.SIZE); j++) {
                 if (x === i && y === j) continue;
                 let tile = this.getTile(i, j);
-                if (filterCallback(tile.value)) {
+                if (filterCallback(tile)) {
                     callback(tile);
                 }
             }
