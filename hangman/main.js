@@ -1,8 +1,3 @@
-async function loaded() {
-    game = new Hangman('../resources/hangman/words.txt')
-}
-
-
 class Hangman {
     static alpha = 'qwertyuiopasdfghjklzxcvbnm'.split('');
     words = null;
@@ -150,4 +145,6 @@ function randomChoice(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
 }
 
-window.addEventListener("load", loaded);
+window.addEventListener("load", () => {
+    new Hangman('../resources/hangman/words.txt');
+});
