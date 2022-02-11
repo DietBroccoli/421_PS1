@@ -32,6 +32,7 @@ class Hangman {
         this.loadLetters();
         this.loadKeyboard();
         this.loadGuessed();
+        console.log(this.words);
     }
 
     randomTarget() {
