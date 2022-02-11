@@ -19,7 +19,7 @@ class Hangman {
     async readWordFile() {
         await $.get(this.wordFile).then((res) => {
             this.words = res.split(/(\s+)/).filter((value, index, array) => {
-                return value !== '\r\n'
+                return value !== '\r\n' && value !== '\n';
             });
             console.log(this.words);
         });
