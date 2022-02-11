@@ -13,12 +13,13 @@ class Hangman {
 
     constructor(wordFile) {
         this.wordFile = wordFile;
-        this.initialize();
+        this.initialize()
+            .catch(console.log);
     }
 
     async readWordFile() {
         await $.get(this.wordFile).then((res) => {
-            this.words = res.split(/(\s+)/).filter((value, index, array) => {
+            this.words = res.split(/(\s+)/).filter((value) => {
                 return value !== '\r\n' && value !== '\n';
             });
             console.log(this.words);
