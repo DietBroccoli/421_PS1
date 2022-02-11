@@ -18,7 +18,7 @@ class Hangman {
 
     async readWordFile() {
         await $.get(this.wordFile).then((res) => {
-            this.words = res.split('\\s+');
+            this.words = res.split('\r\n');
         });
     }
 
