@@ -18,7 +18,10 @@ class Hangman {
 
     async readWordFile() {
         await $.get(this.wordFile).then((res) => {
-            this.words = res.split(/(\s+)/)
+            this.words = res.split(/(\s+)/).filter((value, index, array) => {
+                return value !== '\r\n'
+            });
+            console.log(this.words);
         });
     }
 
@@ -32,7 +35,7 @@ class Hangman {
         this.loadLetters();
         this.loadKeyboard();
         this.loadGuessed();
-        console.log(this.words);
+
     }
 
     randomTarget() {
@@ -113,7 +116,9 @@ class Hangman {
         this.disableButtons();
 
         let tarr = this.target.split('');
-        tarr = tarr.map((c) => { return this.guessed.has(c) ? `${c}&nbsp;` : `<span class='missed'>${c}</span>&nbsp;`; })
+        tarr = tarr.map((c) => {
+            return this.guessed.has(c) ? `${c}&nbsp;` : `<span class='missed'>${c}</span>&nbsp;`;
+        })
 
         document.getElementById('letters').innerHTML = tarr.join('');
     }
